@@ -18,6 +18,7 @@ updatePassword = (e)=> {
         password: e.target.value
     })
 }
+
     render() {
     return (
     <form onSubmit={this.props.onSignUp}>
