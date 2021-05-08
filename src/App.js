@@ -2,6 +2,8 @@ import "./App.css";
 import React, { Component } from "react";
 import SignUpForm from "../src/components/SignUpForm";
 import LoginForm from "../src/components/LoginForm";
+//import firebaseApp from '../src/fire'
+
 
 class App extends Component {
   state = {
