@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SignUpForm from "../src/components/SignUpForm";
 import LoginForm from "../src/components/LoginForm";
-import {auth, message, messageRef} from '../src/fire'
+import {auth, messageRef, roomRef} from '../src/fire'
 import 'bulma/css/bulma.css'
 import SideBar from '../src/components/SideBar'
 import MainPanel from '../src/components/MainPanel'
@@ -12,7 +12,9 @@ class App extends Component {
     isLoggedIn: false,
     email: '',
     uid: null,
-    rooms: {}
+    rooms: {},
+    selectedRoom: null,
+    messages: {}
   };
 
   handleSignUp = ({email,password}) => {
@@ -21,6 +23,16 @@ class App extends Component {
   };
 
   
+  loadData =() =>{
+    roomRef.once('value')
+    .then(roomData=>{const rooms = roomData.val()
+    const selectedRoom=Object.keys(rooms)[0]
+  this.setState({
+    rooms,
+    selectedRoom
+  })})
+  }
+
   componentDidMount(){
     auth.onAuthStateChange(user =>{
       if(user){
@@ -30,6 +42,10 @@ class App extends Component {
           uid,
           isLoggedIn: true
         })
+        //Requests the rooms associated with the user from the db
+        this.loadData();
+        roomRef.on('value', roomData => {const rooms = roomData.val()
+        this.setState({rooms})})
       }
     })
   }
@@ -45,7 +61,7 @@ class App extends Component {
       })
     })
     .catch()
-   console.log('App', this.state)
+    console.log('error')
   };
 
   logout =(e)=> {
@@ -64,6 +80,15 @@ class App extends Component {
     })
   }
 
+  addRoom =(roomName) => {
+
+    const room ={
+      author: this.state.uid,
+      name: roomName,
+      created: Date.now()
+    }
+    roomRef.push(room)
+  }
   sendMessage =(message)=>{
     messageRef.push(message)
   }
@@ -73,7 +98,7 @@ class App extends Component {
       <div className='columns vh-100 is-gapless'>
         <SideBar logout={this.logout} rooms={this.state.rooms}
         selectedRoom ={this.state.selectedRoom}
-        setRoom={this.setRoom}/>
+        setRoom={this.setRoom} addRoom={this.addRoom}/>
         <MainPanel>
           {this.state.isLoggedIn ? 
           <ChatPanel messages={this.state.messages} roomId={this.state.selectedRoom} email={this.state.email} uid={this.state.uid}
