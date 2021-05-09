@@ -1,16 +1,18 @@
-import "./App.css";
 import React, { Component } from "react";
 import SignUpForm from "../src/components/SignUpForm";
 import LoginForm from "../src/components/LoginForm";
 import {auth} from '../src/fire'
 import 'bulma/css/bulma.css'
+import SideBar from '../src/components/SideBar'
+import MainPanel from '../src/components/MainPanel'
 
 
 class App extends Component {
   state = {
     isLoggedIn: false,
     email: '',
-    uid: null
+    uid: null,
+    rooms: {}
   };
 
   handleSignUp = ({email,password}) => {
@@ -46,23 +48,11 @@ class App extends Component {
   render() {
     return (
       <div className='columns vh-100'>
-        <div className='column is-3 hero is-primary'>
-          <h1>Side Bar</h1>
-          <div className='control'>
-          <button onClick={this.logout} className='button is-fullwidth'>Logout</button>
-          </div>
-          
-          </div>
-        <div className='column hero'> 
-          <div className='hero-body'>
-            <div className='columns is-centered'>
-              <div className='columns is-half'>
-               <SignUpForm onSignUp={this.handleSignUp} />
-               <LoginForm onLogin={this.handleLogin}/> 
-              </div>
-            </div>
-          </div> 
-        </div>
+        <SideBar logout={this.logout} rooms={this.state.rooms}/>
+        <MainPanel>
+          <SignUpForm onSignUp={this.handleSignUp} />
+          <LoginForm onLogin={this.handleLogin}/> 
+        </MainPanel>
       </div>
     );
   }
