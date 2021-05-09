@@ -1,25 +1,10 @@
 import React from 'react'
+import RoomList from '../components/RoomList'
 
-// const RoomList = (props) =>{
-//   const roomArray =Object.keys(props.room).map(roomKey=>{
-//     return {
-//       ...props.rooms[roomKey],
-//       id: roomKey
-//     }
-//   })
-//   .map(roomObj=> <Room key={roomObj.id} room={roomObj}/>)
-//   return(
-//     <ul>
-//       {[].map(room => <li>key ={room.id} {room.title}</li>)}
-//     </ul>
-//   )
-// }
-
-const SideBar =({logout,rooms}) => {
+const SideBar =({logout,rooms,selectedRoom, setRoom}) => {
     return (
-    <div className='column is-3 hero is-primary'>
-      <h1>Side Bar</h1>
-      {/* <RoomList rooms={rooms}/> */}
+    <div className='column is-3 hero is-primary' style={{padding: '10px'}}>
+       <RoomList rooms={rooms} selectedRoom={selectedRoom} setRoom={setRoom}/> 
       <div className='control'>
       <button onClick={logout} className='button is-fullwidth'>Logout</button>
     </div>

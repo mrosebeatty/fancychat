@@ -44,11 +44,18 @@ class App extends Component {
       })
     })
   }
+  setRoom =(id) => {
+    this.setState({
+      selectedRoom: id
+    })
+  }
 
   render() {
     return (
-      <div className='columns vh-100'>
-        <SideBar logout={this.logout} rooms={this.state.rooms}/>
+      <div className='columns vh-100 is-gapless'>
+        <SideBar logout={this.logout} rooms={this.state.rooms}
+        selectedRoom ={this.state.selectedRoom}
+        setRoom={this.setRoom}/>
         <MainPanel>
           <SignUpForm onSignUp={this.handleSignUp} />
           <LoginForm onLogin={this.handleLogin}/> 
