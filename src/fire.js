@@ -12,6 +12,7 @@ const firebaseConfig = {
       // Initialize Firebase
       const firebaseApp = firebase.initializeApp(firebaseConfig);
       export const auth = firebaseApp.auth()
+      export const messageRef = firebaseApp.database().ref('messages')
     export default firebaseApp
 
     
