@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import SignUpForm from "../src/components/SignUpForm";
 import LoginForm from "../src/components/LoginForm";
 import {auth} from '../src/fire'
+import 'bulma/css/bulma.css'
 
 
 class App extends Component {
@@ -44,11 +45,24 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <SignUpForm onSignUp={this.handleSignUp} />
-        <LoginForm onLogin={this.handleLogin} />
-        <button onClick={this.logout}>Logout</button>
-        <pre>{JSON.stringify(this.state, null, 2)}</pre>
+      <div className='columns vh-100'>
+        <div className='column is-3 hero is-primary'>
+          <h1>Side Bar</h1>
+          <div className='control'>
+          <button onClick={this.logout} className='button is-fullwidth'>Logout</button>
+          </div>
+          
+          </div>
+        <div className='column hero'> 
+          <div className='hero-body'>
+            <div className='columns is-centered'>
+              <div className='columns is-half'>
+               <SignUpForm onSignUp={this.handleSignUp} />
+               <LoginForm onLogin={this.handleLogin}/> 
+              </div>
+            </div>
+          </div> 
+        </div>
       </div>
     );
   }
