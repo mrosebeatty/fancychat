@@ -2,7 +2,7 @@ import "./App.css";
 import React, { Component } from "react";
 import SignUpForm from "../src/components/SignUpForm";
 import LoginForm from "../src/components/LoginForm";
-//import firebaseApp from '../src/fire'
+import {auth} from '../src/fire'
 
 
 class App extends Component {
@@ -11,11 +11,9 @@ class App extends Component {
     email: ''
   };
 
-  handleSignUp = (e) => {
-    e.preventDefault();
-    this.setState({
-      hasSignedUp: !this.state.hasSignedUp,
-    });
+  handleSignUp = ({email,password}) => {
+    auth.createUserWithEmailAndPassword(email,password)
+    .catch(err => console.error(err))
   };
 
   handleLogin = (email) => {
