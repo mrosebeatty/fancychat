@@ -1,11 +1,11 @@
 import React from 'react'
 import AddRoomForm from './AddRoomForm'
 
-const Room =({room, selectedRoom,setRoom})=>{
-    const styles = selectedRoom === room.id ? 'active room' : 'room'
+const Room =({rooms, selectedRoom,setRoom})=>{
+    const styles = selectedRoom === rooms.id ? 'active room' : 'room'
     return (
         // eslint-disable-next-line jsx-a11y/anchor-is-valid
-        <li><a className={styles} onClick={()=>setRoom(room.id)}>{room.name}</a></li>
+        <li><a className={styles} onClick={()=>setRoom(rooms.id)}>{rooms.name}</a></li>
     )
 }
 
@@ -17,7 +17,7 @@ const RoomList = ({rooms, selectedRoom,setRoom,addRoom}) => {
             {Object.keys(rooms)
             .map(roomKey => ({...rooms[roomKey], id: roomKey}))
             .map(roomObj => <Room key={roomObj.id} room={roomObj} selectedRoom={selectedRoom}
-            onClick ={()=>setRoom(roomObj.id)}/>)
+            onClick ={()=> setRoom(roomObj.id)}/>)
             }
             </ul>
             <div style={{marginTop: '30px'}}>

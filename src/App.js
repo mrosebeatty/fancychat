@@ -12,9 +12,28 @@ class App extends Component {
       isLoggedIn: false,
       email: '',
       uid: null,
-      rooms: {},
-      selectedRoom: null,
-      messages: {}
+      rooms:{
+        'r1':{
+          name: 'Public',
+          author: 'me',
+          created: Date.now()
+        },
+        'r2':{
+          name: 'Private',
+          author: 'anonymous',
+          created: Date.now()
+        }
+      },
+      selectedRoom: 'r1',
+      messages: {
+        'm1':{
+          author: 'you',
+          email: 'you@gmail.com',
+          roomId: 'r1',
+          text: 'hello',
+          created: Date.now()
+        }
+      }
     };
 
     handleSignUp = ({email,password}) => {
@@ -78,7 +97,7 @@ class App extends Component {
     loadData =() =>{
             roomRef.once('value')
                 .then(roomData=>{const rooms = roomData.val()
-                const selectedRoom=Object.keys(rooms)[0]
+              const selectedRoom = Object.keys(rooms)[0]
               this.setState({
                 rooms,
                 selectedRoom
