@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import SignUpForm from "../src/components/SignUpForm";
 import LoginForm from "../src/components/LoginForm";
-import {auth, messageRef, roomRef} from '../src/fire'
+import  {auth, messageRef, roomRef} from '../src/fire'
 import 'bulma/css/bulma.css'
 import SideBar from '../src/components/SideBar'
 import MainPanel from '../src/components/MainPanel'
 import ChatPanel from '../src/components/ChatPanel'
+
 
 class App extends Component {
     state = {
@@ -14,12 +15,12 @@ class App extends Component {
       uid: null,
       rooms:{
         'r1':{
-          name: 'Public',
+          title: 'Public',
           author: 'me',
           created: Date.now()
         },
         'r2':{
-          name: 'Private',
+          title: 'Private',
           author: 'anonymous',
           created: Date.now()
         }

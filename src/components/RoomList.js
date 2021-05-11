@@ -1,15 +1,14 @@
 import React from 'react'
 import AddRoomForm from './AddRoomForm'
-
-const Room =({rooms, selectedRoom,setRoom})=>{
-    const styles = selectedRoom === rooms.id ? 'active room' : 'room'
+const Room =({room,selectedRoom,setRoom})=>{
+    const styles = selectedRoom === room.id? 'active-room' : 'room'
     return (
         // eslint-disable-next-line jsx-a11y/anchor-is-valid
-        <li><a className={styles} onClick={()=>setRoom(rooms.id)}>{rooms.name}</a></li>
+        <li><a className={styles} onClick={()=>setRoom(room.id)}>{room.name}</a></li>
     )
 }
 
-const RoomList = ({rooms, selectedRoom,setRoom,addRoom}) => {
+const RoomList = ({rooms,selectedRoom,setRoom,addRoom}) => {
     return (
         <aside className = 'menu'>
             <h1 className='title'>Rooms:</h1>
@@ -29,5 +28,7 @@ const RoomList = ({rooms, selectedRoom,setRoom,addRoom}) => {
         </aside>
         )
     }
+
+
 
 export default RoomList 

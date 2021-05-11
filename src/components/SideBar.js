@@ -2,7 +2,8 @@ import React from 'react'
 import RoomList from '../components/RoomList'
 
 const SideBar =({logout,rooms,selectedRoom, setRoom, addRoom}) => {
-    return (
+ 
+  return (
     <div className='column is-3 hero is-primary' style={{padding: '10px'}}>
        <RoomList rooms={rooms} selectedRoom={selectedRoom} setRoom={setRoom} addRoom={addRoom}/> 
       <div className='control'>
