@@ -1,5 +1,6 @@
 import React from 'react'
 import AddRoomForm from './AddRoomForm'
+
 const Room =({room,selectedRoom,setRoom})=>{
     const styles = selectedRoom === room.id? 'active-room' : 'room'
     return (
@@ -16,7 +17,7 @@ const RoomList = ({rooms,selectedRoom,setRoom,addRoom}) => {
             {Object.keys(rooms)
             .map(roomKey => ({...rooms[roomKey], id: roomKey}))
             .map(roomObj => <Room key={roomObj.id} room={roomObj} selectedRoom={selectedRoom}
-            onClick ={()=> setRoom(roomObj.id)}/>)
+            setRoom={setRoom}/>)
             }
             </ul>
             <div style={{marginTop: '30px'}}>

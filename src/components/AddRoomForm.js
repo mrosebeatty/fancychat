@@ -2,12 +2,12 @@ import React, {Component} from 'react'
 
 class AddRoomForm extends Component {
     state={
-        roomName: ""
+        roomName: ''
     }
 
     handleAddRoom =(e) => {
         e.preventDefault();
-        this.props.addRoom(this.state)
+        this.props.addRoom(this.state.roomName)
         this.setState({roomName: '' })
     }
     render(){
